@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC ICT Class | Shahabuddin Sir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --accent-blue: #38bdf8;
+            --glass-white: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(56, 189, 248, 0.3);
+        }
+
+        body {
+            background: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(30, 27, 75, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(15, 23, 42, 0.8) 0%, transparent 40%);
+            color: #ffffff;
+            font-family: 'Hind Siliguri', sans-serif;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .glass-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            height: 100%;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: #000;
+            font-weight: 700;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+            transform: scale(1.05);
+        }
+
+        .video-link {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #e2e8f0;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .video-link:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-blue);
+            color: #ffffff;
+            padding-left: 1.25rem;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .tag-basic { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+
+        .chapter-header {
+            border-left: 4px solid var(--accent-blue);
+            padding-left: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content { animation: fadeIn 0.4s ease-out; }
+        
+        .whatsapp-badge {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 tracking-tight">HSC <span class="text-sky-400">ICT Class</span></h1>
+            <p class="text-white text-xl md:text-2xl font-semibold mb-6">HSC পরীক্ষার্থীদের জন্য শাহাবুদ্দিন স্যারের স্পেশাল ক্লাস</p>
+            
+            <div class="flex flex-col items-center gap-4">
+                <a href="https://wa.me/8801782291657" target="_blank" class="whatsapp-badge hover:scale-105 transition-transform">
+                    <span>WhatsApp: 01782291657</span>
+                </a>
+                <div class="px-6 py-2 rounded-full bg-sky-500/10 border border-sky-500/30 text-sky-400 text-sm font-bold uppercase tracking-widest">
+                    Developed By Shib Karmoker
+                </div>
+            </div>
+        </header>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+            <button onclick="showTab('ch1')" id="btn-ch1" class="tab-btn active px-5 py-3 rounded-xl text-sm md:text-base">১ম অধ্যায়</button>
+            <button onclick="showTab('ch2')" id="btn-ch2" class="tab-btn px-5 py-3 rounded-xl text-sm md:text-base">২য় অধ্যায়</button>
+            <button onclick="showTab('ch3p1')" id="btn-ch3p1" class="tab-btn px-5 py-3 rounded-xl text-sm md:text-base">৩য় (১ম)</button>
+            <button onclick="showTab('ch3p2')" id="btn-ch3p2" class="tab-btn px-5 py-3 rounded-xl text-sm md:text-base">৩য় (২য়)</button>
+            <button onclick="showTab('ch4')" id="btn-ch4" class="tab-btn px-5 py-3 rounded-xl text-sm md:text-base">৪র্থ অধ্যায়</button>
+            <button onclick="showTab('ch5')" id="btn-ch5" class="tab-btn px-5 py-3 rounded-xl text-sm md:text-base">৫ম অধ্যায়</button>
+            <button onclick="showTab('ch6')" id="btn-ch6" class="tab-btn px-5 py-3 rounded-xl text-sm md:text-base">৬ষ্ঠ অধ্যায়</button>
+        </div>
+
+        <div id="tab-ch1" class="tab-content grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 md:col-span-3">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">প্রথম অধ্যায়: তথ্য ও যোগাযোগ প্রযুক্তি</h2>
+                    <p class="text-sky-400 font-bold">পরীক্ষায় এখান থেকে ১৪ মার্ক পাবে</p>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-sky-400">Basic Classes</h3>
+                <a href="https://www.facebook.com/share/v/1CoUc9Uf14/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>১: বিশ্বগ্রাম</span></a>
+                <a href="https://www.facebook.com/share/v/1LAyMLDsWo/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>২: VR</span></a>
+                <a href="https://www.facebook.com/share/v/18oEy6b6Fk/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৩: AI</span></a>
+                <a href="https://www.facebook.com/share/v/1859FNg2ek/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৪: ক্রায়োসার্জারি</span></a>
+                <a href="https://www.facebook.com/share/v/1JUeGBTKJM/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৫: জেনেটিক + নৈতিকতা</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-emerald-400">MCQ Practice</h3>
+                <a href="https://www.facebook.com/share/v/1GPERGPs2a/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>১ম অধ্যায় MCQ</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-rose-400">CQ Practice</h3>
+                <a href="https://www.facebook.com/share/v/1ApoShd8GQ/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ ক্লাস-১</span></a>
+                <a href="https://www.facebook.com/share/v/18XHEUnooa/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ ক্লাস-২</span></a>
+            </div>
+        </div>
+
+        <div id="tab-ch2" class="tab-content hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 md:col-span-3">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">২য় অধ্যায়: নেটওয়ার্কিং</h2>
+                    <p class="text-sky-400 font-bold">পরীক্ষায় এখান থেকে ১৫ মার্ক পাবে</p>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-sky-400">Basic Classes</h3>
+                <a href="https://www.facebook.com/share/v/18bgb82xst/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>বেসিক ক্লাস-১</span></a>
+                <a href="https://www.facebook.com/share/v/18cs8wcdmW/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>বেসিক ক্লাস-২</span></a>
+                <a href="https://www.facebook.com/share/v/18CjUQEb4S/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>বেসিক ক্লাস-৩</span></a>
+                <a href="https://www.facebook.com/share/v/1AyfZ5qjQG/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>বেসিক ক্লাস-৪</span></a>
+                <a href="https://www.facebook.com/share/v/1E7Mq4ZRY6/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>বেসিক ক্লাস-৫</span></a>
+                <a href="https://www.facebook.com/share/v/1CWJdB9gKq/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>বেসিক ক্লাস-৬</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-emerald-400">MCQ Solution</h3>
+                <a href="https://www.facebook.com/share/v/18TNVPNFhM/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>MCQ ক্লাস-১</span></a>
+                <a href="https://www.facebook.com/share/v/1KVk2SGKDS/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>MCQ ক্লাস-২</span></a>
+                <a href="https://www.facebook.com/share/v/18hetkF4jS/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>MCQ ক্লাস-৩</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-rose-400">CQ Solution</h3>
+                <a href="https://www.facebook.com/share/v/1bPZytkM2U/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ ক্লাস-১</span></a>
+                <a href="https://www.facebook.com/share/v/1B1arZsRDW/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ ক্লাস-২</span></a>
+                <a href="https://www.facebook.com/share/v/1CWg8jkTZk/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ ক্লাস-৩</span></a>
+            </div>
+        </div>
+
+        <div id="tab-ch3p1" class="tab-content hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 md:col-span-3">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">৩য় অধ্যায় (১ম অংশ): সংখ্যা পদ্ধতি</h2>
+                    <p class="text-sky-400 font-bold">১৩ মার্ক নিশ্চিত</p>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-sky-400">Basic Classes</h3>
+                <a href="https://www.facebook.com/share/v/1By1wx8wH2/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>১: পরিচিতি</span></a>
+                <a href="https://www.facebook.com/share/v/1A4hCZkNo9/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>২: দশমিক থেকে সকল</span></a>
+                <a href="https://www.facebook.com/share/v/1EfCkF6CdP/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>৩: সকল থেকে দশমিক</span></a>
+                <a href="https://www.facebook.com/share/v/1DgeUgPGEE/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>৪: রূপান্তর-২</span></a>
+                <a href="https://www.facebook.com/share/v/17cCvLy8k4/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>৫: অকটাল/হেক্সা</span></a>
+                <a href="https://www.facebook.com/share/v/17kwk1d2g2/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>৬: যোগ</span></a>
+                <a href="https://www.facebook.com/share/v/14UQc5SaaqP/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>৭: বিয়োগ</span></a>
+                <a href="https://www.facebook.com/share/v/1DLA2nHdEJ/" target="_blank" class="video-link p-2 rounded-lg text-xs font-bold text-sky-400"><span>৮: পরিপূরক</span></a>
+                <a href="https://www.facebook.com/share/v/1AAAKNSV86/" target="_blank" class="video-link p-2 rounded-lg text-xs"><span>৯: কোড</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-emerald-400">MCQ Solution</h3>
+                <a href="https://www.facebook.com/share/v/14YKtPTCgVj/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>MCQ-১</span></a>
+                <a href="https://www.facebook.com/share/v/18bGjcjKAU/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>MCQ-২</span></a>
+                <a href="https://www.facebook.com/share/v/1BhWZmzSDV/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>MCQ-৩</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-rose-400">CQ Solution</h3>
+                <a href="https://www.facebook.com/share/v/198cSvEzXg/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ-১</span></a>
+                <a href="https://www.facebook.com/share/v/1862TzLPSx/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ-২</span></a>
+                <a href="https://www.facebook.com/share/v/1EFbqbmePC/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ-৩</span></a>
+                <a href="https://www.facebook.com/share/v/1HXKaNYkif/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>CQ-৪</span></a>
+            </div>
+        </div>
+
+        <div id="tab-ch3p2" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card p-6 md:col-span-2">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">৩য় অধ্যায় (২য় অংশ): ডিজিটাল ডিভাইস</h2>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-sky-400">Logic Gates</h3>
+                <a href="https://www.facebook.com/share/v/1BrfG3qUuA/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>১: লজিক গেইট (১)</span></a>
+                <a href="https://www.facebook.com/share/v/1DQnYwGEfY/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>২: লজিক গেইট (২)</span></a>
+                <a href="https://www.facebook.com/share/v/172ns4T88E/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৩: লজিক চিত্র</span></a>
+                <a href="https://www.facebook.com/share/v/1BowXDTBqc/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৪: সত্যক সারণি</span></a>
+                <a href="https://www.facebook.com/share/v/14YuLtjDvEU/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৫: সরলীকরণ (১)</span></a>
+                <a href="https://www.facebook.com/share/v/1A7kUikM61/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৬: সরলীকরণ (২)</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-orange-400">Advanced Circuits</h3>
+                <a href="https://www.facebook.com/share/v/1GzVwynsbF/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৭: বাস্তবায়ন (১)</span></a>
+                <a href="https://www.facebook.com/share/v/1EDtfgHjjz/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৮: বাস্তবায়ন (২)</span></a>
+                <a href="https://www.facebook.com/share/v/1A7ue1PwLb/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৯: এনকোডার ডিকোডার</span></a>
+                <a href="https://www.facebook.com/share/v/17VJzU2pUW/" target="_blank" class="video-link p-3 rounded-lg text-sm font-bold"><span>১০: অ্যাডার পার্ট-১</span></a>
+                <a href="https://www.facebook.com/share/v/1AzAG5WXaU/" target="_blank" class="video-link p-3 rounded-lg text-sm font-bold"><span>১১: অ্যাডার পার্ট-২</span></a>
+            </div>
+        </div>
+
+        <div id="tab-ch4" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card p-6 md:col-span-2">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">চতুর্থ অধ্যায়: HTML</h2>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-sky-400">HTML Basics</h3>
+                <a href="https://www.facebook.com/share/v/1FvVLhyhSB/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>১: কাঠামো</span></a>
+                <a href="https://www.facebook.com/share/v/17bf7BRcYr/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>২: ডোমেইন</span></a>
+                <a href="https://www.facebook.com/share/v/1D8aGpTyRE/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৭: তালিকা</span></a>
+                <a href="https://www.facebook.com/share/v/17XN7U5Z5b/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৮: প্যারাগ্রাফ</span></a>
+                <a href="https://www.facebook.com/share/v/1Ek7NZBPaT/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৯: বর্ণনাযুক্ত</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-indigo-400">Tables</h3>
+                <a href="https://www.facebook.com/share/v/168Q5Rqctq/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৩: টেবিল বেসিক</span></a>
+                <a href="https://www.facebook.com/share/v/1BuZLF5TwH/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৪: টেবিল তৈরি-২</span></a>
+                <a href="https://www.facebook.com/share/v/1CT9M3AekZ/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৫: টেবিল প্রাকটিস</span></a>
+                <a href="https://www.facebook.com/share/v/1b6CpGvCmq/" target="_blank" class="video-link p-3 rounded-lg text-sm"><span>৬: টেবিল ঘুরানো</span></a>
+            </div>
+        </div>
+
+        <div id="tab-ch5" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card p-6 md:col-span-2">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">৫ম অধ্যায়: প্রোগ্রামিং ভাষা</h2>
+                </div>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-sky-400">Fundamentals</h3>
+                <a href="https://www.facebook.com/share/v/1JtC5wNisD/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>১: পরিচিতি</span></a>
+                <a href="https://www.facebook.com/share/v/15tc8EB1cm/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>২: অ্যালগরিদম</span></a>
+                <a href="https://www.facebook.com/share/v/1A96p63e9E/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৩: ডেটা টাইপ</span></a>
+                <a href="https://www.facebook.com/share/v/1DKgVgXHjd/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৪: ইনপুট আউটপুট</span></a>
+                <a href="https://www.facebook.com/share/v/188MqqzMCY/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৫: অপারেটর</span></a>
+                <a href="https://www.facebook.com/share/v/1A8fXaF3Vt/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৬: সি প্রাকটিস</span></a>
+            </div>
+            <div class="glass-card p-6">
+                <h3 class="font-bold mb-4 text-emerald-400">Logic & Loops</h3>
+                <a href="https://www.facebook.com/share/v/17oNqtDNdR/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৭: লুপ ও কন্ডিশন</span></a>
+                <a href="https://www.facebook.com/share/v/1C2gSJv77Z/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৮: লুপ প্রাকটিস</span></a>
+                <a href="https://www.facebook.com/share/v/1B8iSMyghp/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>৯: সিরিজ প্রোগ্রাম</span></a>
+                <a href="https://www.facebook.com/share/v/1Fv35UHfQ1/" target="_blank" class="video-link p-2 rounded-lg text-sm"><span>১০: লুপ এডভান্স</span></a>
+            </div>
+        </div>
+
+        <div id="tab-ch6" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="glass-card p-6 md:col-span-2">
+                <div class="chapter-header">
+                    <h2 class="text-2xl font-bold">৬ষ্ঠ অধ্যায়: ডেটাবেস ম্যানেজমেন্ট</h2>
+                </div>
+            </div>
+            <div class="glass-card p-6 md:col-span-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="https://www.facebook.com/share/v/17V9dyLHb8/" target="_blank" class="video-link p-3 rounded-lg"><span>১: ডেটাবেস পরিচিতি</span></a>
+                    <a href="https://www.facebook.com/share/v/15Q92KQB91/" target="_blank" class="video-link p-3 rounded-lg"><span>২: কী (Primary/Foreign)</span></a>
+                    <a href="https://www.facebook.com/share/v/16QvBLY4Y9/" target="_blank" class="video-link p-3 rounded-lg"><span>৩: রিলেশনশিপ</span></a>
+                    <a href="https://www.facebook.com/share/v/1Er9jf2RnF/" target="_blank" class="video-link p-3 rounded-lg"><span>৪: কুয়েরি ল্যাঙ্গুয়েজ</span></a>
+                    <a href="https://www.facebook.com/share/v/1ACbBbDL9i/" target="_blank" class="video-link p-3 rounded-lg"><span>৫: SQL বেসিক</span></a>
+                    <a href="https://www.facebook.com/share/v/1DA5UUmvuA/" target="_blank" class="video-link p-3 rounded-lg"><span>৬: সিকিউরিটি</span></a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-24 text-center">
+            <div class="h-[1px] bg-gradient-to-r from-transparent via-sky-500/50 to-transparent mb-8"></div>
+            <p class="text-slate-300 text-lg">&copy; 2026 HSC ICT Class. All Rights Reserved by <span class="font-bold text-white">Shahabuddin sir</span></p>
+            <p class="mt-4 text-sky-400 font-bold tracking-widest text-sm uppercase">Developed By Shib Karmoker</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(name) {
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById('tab-' + name).classList.remove('hidden');
+            document.getElementById('btn-' + name).classList.add('active');
+            window.scrollTo({ top: 150, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
